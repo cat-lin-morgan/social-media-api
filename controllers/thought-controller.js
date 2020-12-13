@@ -1,4 +1,5 @@
 
+const { compileFunction } = require('vm');
 const { User, Thoughts } = require('../models');
 
 const thoughtController = {
@@ -28,7 +29,6 @@ const thoughtController = {
     },
     //create a new thought
     createThoughts({ params, body }, res) {
-        console.log(body);
         Thoughts.create(body)
         .then(( thoughtData ) => {
             return User.findOneAndUpdate(
@@ -48,17 +48,13 @@ const thoughtController = {
     },
     //update though by id,
     updateThoughts({ params, body }, res) {
-        console.log(params);
-        console.log(body);
-        Thoughts.findByIdAndUpdate({ _id: params.id }, body, { new: true })
-            .then(({ id }) => {
-                return User.findOneAndUpdate(
-                    { _id: params.userId },
-                    { $push: { thoughts: id } },
-                    { new: true }
-                );
-            })
+        Thoughts.findByIdAndUpdate(
+            { _id: params.id },
+            body, 
+            { new: true }
+            )
             .then(dbThoughtData => {
+                console.log('dbThoughtData', dbThoughtData);
                 if (!dbThoughtData) {
                     res.status(404).json({ message: 'No thought with this id!' });
                     return;
@@ -81,8 +77,6 @@ const thoughtController = {
     },
     //create a new reaction
     createReaction({ params, body }, res) {
-        // console.log('params', params);
-        // console.log('body', body);
         Thoughts.findOneAndUpdate(
             { _id: params.thoughtId },
             { $push: { reactions: body } },
@@ -100,7 +94,6 @@ const thoughtController = {
     },
     //remove reaction
     deleteReaction({ params }, res) {
-        console.log(params);
         Thoughts.findOneAndUpdate(
             { _id: params.thoughtId},
             { $pull: { reactions: { _id : params.reactionId } } },

@@ -11,7 +11,6 @@ ___
 * express
 * mongoose
 
-
 ![javascript badge](https://img.shields.io/badge/We%20Stan-Javascript-brightgreen)
 ![node badge](https://img.shields.io/badge/Node-Over%20Here-blueviolet)
 

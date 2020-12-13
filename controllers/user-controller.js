@@ -73,7 +73,6 @@ const userController = {
     },
     //create a friends so you're not so lonely
     createFriend({ params }, res) {
-        console.log(params);
         User.findOneAndUpdate(
             { _id: params.userId },
             { $push: { friends: { _id: params.friendId } } },
@@ -90,7 +89,6 @@ const userController = {
     },
     // delete your friend cause you don't like them anymore
     deleteFriend({ params, body}, res) {
-        console.log( params);
         User.findOneAndUpdate(
             { _id: params.userId },
             { $pull: { friends:  params.friendId } },
