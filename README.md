@@ -1,5 +1,5 @@
 ___
-# Get Hitched - Project Two - Full-Stack Web Application
+# Social Media API
 
 ## Description
 
