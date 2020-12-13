@@ -48,11 +48,13 @@ const thoughtController = {
     },
     //update though by id,
     updateThoughts({ params, body }, res) {
+        console.log(params);
+        console.log(body);
         Thoughts.findByIdAndUpdate({ _id: params.id }, body, { new: true })
-            .then(({ _id }) => {
-                return User.create(
+            .then(({ id }) => {
+                return User.findOneAndUpdate(
                     { _id: params.userId },
-                    { $push: { thoughts: _id } },
+                    { $push: { thoughts: id } },
                     { new: true }
                 );
             })
