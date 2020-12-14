@@ -3,7 +3,7 @@ ___
 
 ## Description
 
-This was an experiment is familiarizing myself with the [mongoose](https://www.npmjs.com/package/mongoose) and [mongodb](https://www.mongodb.com/1) way of doing CRUD operations and building out the humble beginnings of a social media website API.
+This was an experiment in familiarizing myself with the [mongoose](https://www.npmjs.com/package/mongoose) and [mongodb](https://www.mongodb.com/1) way of doing CRUD operations and building out the humble beginnings of a social media website API.
 
 HTTP requests for Users, Friends(User), Thoughts, Reactions(Thoughts).
 
