@@ -1,5 +1,4 @@
 
-const { compileFunction } = require('vm');
 const { User, Thoughts } = require('../models');
 
 const thoughtController = {
@@ -18,7 +17,7 @@ const thoughtController = {
             .select('-__v')
             .then(dbThoughtData => {
                 if (!dbThoughtData) {
-                    res.status.json({ message: 'No pizza found with this id' });
+                    res.status(404).json({ message: 'No pizza found with this id' });
                     return;
                 }
                 res.json(dbThoughtData);
